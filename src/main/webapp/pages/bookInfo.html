@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/bookInfo.css">
+    <link rel="stylesheet" href="../css/star.css">
+    <link rel="stylesheet" href="../css/book.css">
+
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+    <script src="../js/rating.js"></script>
+    <script src="../js/bookInfo.js"></script>
+
+
+</head>
+<body>
+<div class="container">
+
+    <!--导航栏-->
+    <div class="row" id="navBar">
+        <script>
+            $("#navBar").load("/pages/navBar.html");
+        </script>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-lg-8 column">
+            <div class="row">
+                <h2 id="title" style="padding-bottom: 15px;">
+                    <span >一些时刻</span>
+                    <div class="clear"></div>
+                </h2>
+                <!--上半部分内容-->
+                <div class="indent">
+                    <div class="subjectwrap clearfix ">
+                        <div class="subject clearfix ">
+
+                            <div id="mainpic" class="">
+                                <a class="nbg" href="/pages/book/img/s29718480.jpg" title="一些时刻">
+                                    <img src="/pages/book/img/s29718480.jpg" title="点击看大图" alt="一些时刻" rel="v:photo"
+                                         style="width: 135px">
+                                </a>
+                                <br>
+                            </div>
+
+                            <div id="info" class="">
+                                <span>
+                                    <span class="pl"> 作者</span>:
+                                    <a class="" href="https://book.douban.com/search/%E8%8B%8F%E6%96%B9">苏方</a>
+                                </span>
+                                <br>
+                                <span class="pl">出版社:</span> 理想国 | 广西师范大学出版社<br>
+                                <span class="pl">出品方:</span>&nbsp;<a
+                                    href="https://book.douban.com/series/39057?brand=1">理想国</a><br>
+                                <span class="pl">出版年:</span> 2018-3<br>
+                                <span class="pl">页数:</span> 288<br>
+                                <span class="pl">定价:</span> 45.00<br>
+                                <span class="pl">装帧:</span> 平装<br>
+                                <span class="pl">ISBN:</span> 9787559806772<br>
+                            </div>
+                        </div>
+
+
+                        <!--@@@右上角豆瓣评分-->
+                        <div id="interest_sectl" class="">
+                            <div class="rating_wrap clearbox" rel="v:rating">
+                                <div class="rating_logo">书籍评分</div>
+                                <div class="rating_self clearfix" typeof="v:Rating">
+                                    <strong class="ll rating_num " id="avg_raitng" property="v:average"> 8.9 </strong>
+                                    <span property="v:best" content="10.0"></span>
+                                    <div class="rating_right ">
+                                        <div class="ll " id="rating_star"></div>
+                                        <div class="rating_sum">
+                                                <span class="">
+                                                    <a class="rating_people"><span
+                                                            property="v:votes">76</span>人评价</a>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="stars5 starstop" title="力荐">5星</span>
+                                <div class="power" style="width:64px"></div>
+                                <span class="rating_per">55.3%</span>
+                                <br>
+                                <span class="stars4 starstop" title="推荐">4星</span>
+                                <div class="power" style="width:93px"></div>
+                                <span class="rating_per">28.9%</span>
+                                <br>
+                                <span class="stars3 starstop" title="还行">3星</span>
+                                <div class="power" style="width:13px"></div>
+                                <span class="rating_per">11.8%</span>
+                                <br>
+                                <span class="stars2 starstop" title="较差">2星</span>
+                                <div class="power" style="width:0px"></div>
+                                <span class="rating_per">0%</span>
+                                <br>
+                                <span class="stars1 starstop" title="很差">1星</span>
+                                <div class="power" style="width:4px"></div>
+                                <span class="rating_per">3.9%</span>
+                                <br>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--@@@ 5个星星评价-->
+                    <div id="interest_sect_level" class="clearfix">
+                        <a href="https://book.douban.com/subject/30167658/#" rel="nofollow"
+                           class="collect_btn colbutt ll" name="pbtn-30167658-collect">
+                        </a>
+                        <div class="ll j a_stars">
+
+                            评价:
+                            <span id="rating">
+                                <span id="stars"
+                                      data-solid="/image/star_onmouseover.png"
+                                      data-hollow="/image/star_hollow_hover.png"
+                                      data-solid-2x="/image/star_onmouseover@2x.png"
+                                      data-hollow-2x="/image/star_hollow_hover@2x.png">
+
+                                                                <a href="javascript:;" class="j a_collect_btn" name="pbtn-30167658-collect-1">
+                                                    <img src="/image/star_hollow_hover.png" id="star1" width="16" height="16"></a>
+                                                                <a href="javascript:;" class="j a_collect_btn" name="pbtn-30167658-collect-2">
+                                                    <img src="/image/star_hollow_hover.png" id="star2" width="16" height="16"></a>
+                                                                <a href="javascript:;" class="j a_collect_btn" name="pbtn-30167658-collect-3">
+                                                    <img src="/image/star_hollow_hover.png" id="star3" width="16" height="16"></a>
+                                                                <a href="javascript:;" class="j a_collect_btn" name="pbtn-30167658-collect-4">
+                                                    <img src="/image/star_hollow_hover.png" id="star4" width="16" height="16"></a>
+                                                                <a href="javascript:;" class="j a_collect_btn" name="pbtn-30167658-collect-5">
+                                                    <img src="/image/star_hollow_hover.png" id="star5" width="16" height="16"></a>
+                                </span>
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+                <br clear="all">
+            </div>
+
+            <!--@@@内容简介-->
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            内容简介
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                            <span class="short" id="intro_short">
+                                <div class="intro">
+                                    <p>★以打破常规的方式，讲述脱轨的爱情：十九幕小剧场，演尽爱的背面</p>
+                                    <p>★一部因网友好评脱颖而出的口碑作品，展现囚禁每一个现代人的情感困境</p>
+                                    <p>★豆瓣阅读征文大赛·爱情组首奖获得者短篇小说合集</p>
+                                    <p>★小说由十九个短故事组成，这十九个故事彼此独立也彼此联系，关于恋情与婚姻中的欲望、背叛、 欺骗与软弱。</p>
+                                    <p>【内容简介】</p>
+                                    <p>故事的主线是男女主人公陈年与王麦的情感纠葛。小说创造性地描绘了这对主人公在“平行时空”里，发生的不同故事、做出的不同选择，最终却导向相似的命运。他们像是为自己的人生按下“撤销键”，重新设定每一次开始，在暧昧中试探、较量、纠缠、挣扎，却一次次在绝望中走向永恒的“毁灭之路”。</p>    <p>【编辑推荐】</p>    <p>豆瓣阅读征文大赛首奖获得者作品，这里没有名家评述，只有网友良心推荐：我觉得“出轨”这件事儿，没有比苏方老师写得更好的了。</p>    <p>以非常规的方式，写非常规的爱情。独幕剧式的场景，性...</p>
+
+                                    <p>· · · · · ·(<a href="javascript:$('#intro_short').hide();$('#intro_full').show();void(0);">更多</a>)</p>
+                                </div>
+                            </span>
+                            <!--@@@介绍-->
+                            <span class="all" id="intro_full" style="display:none">
+                                    <div class="intro">
+                                        <p>★以打破常规的方式，讲述脱轨的爱情：十九幕小剧场，演尽爱的背面</p>
+                                        <p>★一部因网友好评脱颖而出的口碑作品，展现囚禁每一个现代人的情感困境</p>
+                                        <p>★豆瓣阅读征文大赛·爱情组首奖获得者短篇小说合集</p>
+                                        <p>★小说由十九个短故事组成，这十九个故事彼此独立也彼此联系，关于恋情与婚姻中的欲望、背叛、 欺骗与软弱。</p>
+                                        <p>【内容简介】</p>
+                                        <p>故事的主线是男女主人公陈年与王麦的情感纠葛。小说创造性地描绘了这对主人公在“平行时空”里，发生的不同故事、做出的不同选择，最终却导向相似的命运。他们像是为自己的人生按下“撤销键”，重新设定每一次开始，在暧昧中试探、较量、纠缠、挣扎，却一次次在绝望中走向永恒的“毁灭之路”。</p>    <p>【编辑推荐】</p>    <p>豆瓣阅读征文大赛首奖获得者作品，这里没有名家评述，只有网友良心推荐：我觉得“出轨”这件事儿，没有比苏方老师写得更好的了。</p>    <p>以非常规的方式，写非常规的爱情。独幕剧式的场景，性感凌厉的语言，无法延展的故事，面目模糊的人物。苏方打破传统意义上的小说形式，以其独特的视角和表达，描述那些非主流的爱情形式：“失乐园”式的危险纠葛、“革命之路”式的苍白破碎、“消失的爱人”式的机关算尽……</p>    <p>透过爱的背面，呈现命运的错位与人性的弱点。那些看似平常的一颦一蹙、举手投足中，藏匿着男女之间不可言喻的情感暗涌。出轨、欺骗、猜忌、报复行为里的不忠实、不坚守、不信任、不勇敢，实则是人与人之间总是错失、永远遗憾、终究破碎的关系，是人性深处那些利己的、贪婪的、懦弱的本质。</p>    <p>看似轻松的沉重之作，折射现代人的爱情困境。在我们飞速运转的生活与高效更迭的情感中，错失、逃避、遗憾，似乎变得无足轻重，苏方的小说让我们重新认识到现代人所处的情感困境，和其中那些不可回避的丑陋。但在每个故事的最后，我们不仅看到自己，也理解自己，甚至原谅自己。</p>    <p>【网友推荐】</p>    <p>作者的写作很像外科大夫做手术，她手里的笔就像一把手术刀，她下手很稳，精准，一针见血。她的表情很淡漠，然而嘴角带了一丝坏坏的笑。她会不发一言的在结束的时候缝合伤口，然后把你留给她的助手轻轻走开。—novarebirth</p>    <p>苏方的小说很性感，很有范儿，一口京片子，犀利，迅捷，短句流利漂亮，精心琢磨小匕首，凉丝丝，寒涔涔，划人口舌。也是薄荷冻在冰格里，冷手指一颗颗敲进啤酒，哐啷啷响。——粟冰箱</p>    <p>每个人都能从这几个或大或小人物上看到自己，生活就是这样纠结，小美好大失落交迭，男男女女没教科书般深刻的爱情了，但现在人的爱情夹杂在复杂的生活和自己的一片小社会里，剪不断理还乱。——刘剑飞</p>    <p>每个动作描写、心理捕捉都极为生动，言简意赅，入木三分，语言极富张力和活力。故事情节精彩酣畅，描写的人生苦涩悲怆而又不乏妙趣。在故事里，出轨是那么合乎逻辑、理性和欲望、人性的，特容易让我产生共情。出轨这事儿，我没见过比苏老师写得更好的了。——小葵儿</p>    <p>第一本看完之后可以毫不犹豫给五颗星的作品。实在是写得太好了。故事语言干脆利落，仿佛电影分镜般的蒙太奇拼接，人物之间的关系既清晰又紧密，丝毫不乱！啧啧称奇！最关键的是好多隐喻用的既精妙又含蓄，就好像吹到最大程度的泡泡糖，少一分气儿则不够饱满，多一分气儿就该爆开了。——大大泡泡龙</p>
+                                        <p>· · · · · ·(<a href="javascript:$('#intro_full').hide();$('#intro_short').show();void(0);">收起</a>)</p>
+                                    </div>
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <!--@@@作者简介-->
+            <div class="row" id="author_intro_row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            作者简介
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <!--@@@作者简介-->
+                        <div class="indent ">
+                            <style type="text/css" media="screen">
+                                .intro p {
+                                    text-indent: 2em;
+                                    word-break: normal;
+                                }
+                            </style>
+                            <div class="intro" id="author_intro_content">
+                                <p>苏方，1984年生于沈阳，2008年毕业于同济大学临床医学系，正在成为作家。</p>
+                                <p>2016年中篇小说《毁灭之路》从几万部参赛作品中脱颖而出，获豆瓣阅读征文大赛首奖。曾在“一个”app、《小说界》杂志等文学媒体发表小说、散文。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--@@@目录-->
+            <div class="row" id="catalog_row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            目录
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <!--@@@目录缩减-->
+                        <div class="indent" id="catalog_short">
+                            003 _ 李白白<br>
+                            021 _ 第四乐章<br>
+                            037 _ 一些时刻<br>
+                            045 _ 鱼　鳍<br>
+                            059 _ 盲<br>
+                            069 _ 自　由<br>
+                            · · · · · ·
+                            (<a href="javascript:$('#catalog_short').hide();$('#catalog_full').show();void(0);">更多</a>)
+                        </div>
+                        <!--@@@目录-->
+                        <div class="indent" id="catalog_full" style="display:none">
+                            003 _ 李白白<br>
+                            021 _ 第四乐章<br>
+                            037 _ 一些时刻<br>
+                            045 _ 鱼　鳍<br>
+                            059 _ 盲<br>
+                            069 _ 自　由<br>
+                            083 _ 新　婚<br>
+                            091 _ 像春天一样<br>
+                            101 _ 若无其事<br>
+                            109 _ 如　戏<br>
+                            131 _ 下　午<br>
+                            147 _ 亡　魂<br>
+                            159 _ 重　逢<br>
+                            183 _ 四　季<br>
+                            195 _ 最后一次分手<br>
+                            201 _ 礼　物<br>
+                            211 _ 生日快乐<br>
+                            217 _ 同归于尽<br>
+                            223 _ 毁灭之路<br>
+                            · · · · · · (<a
+                                href="javascript:$('#catalog_full').hide();$('#catalog_short').show();void(0);">收起</a>)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--@@@右边边栏-->
+        <div class="aside col-md-4 col-lg-4 column" id="rigthPage">
+            <div class="aside" style="position: static; left: 712px; right: auto; bottom: 200px; top: auto;">
+                <div id="dale_book_subject_top_right"></div>
+                <link rel="stylesheet" href="/css/rightSide.css">
+                <!--@@@购买图书-->
+                <div class="gray_ad" id="buyinfo">
+                    <div id="buyinfo-printed">
+                        <h2>获取书籍
+                            <!--<span class="">获取书籍</span>-->
+                        </h2>
+                        <ul class="bs more-after" id="buy_info">
+                            <li class="">
+                                <a target="_blank" href="http://opac.lib.szu.edu.cn/opac/searchresult.aspx?anywords=%E5%B0%8F%E7%8E%8B%E5%AD%90&ecx=1&efz=1&dt=ALL&cl=ALL&dp=20&sf=M_PUB_YEAR&ob=DESC&sm=table&dept=ALL&code=utf-8"class="">
+                                    <span class="">&gt;上深大图书馆借阅此书</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="https://search.jd.com/Search?keyword=%E5%B0%8F%E7%8E%8B%E5%AD%90&enc=utf-8&wq=%E5%B0%8F%E7%8E%8B%E5%AD%90" class="">
+                                    <span class="">&gt;上京东商城购买此书</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="http://search.dangdang.com/?key=%D0%A1%CD%F5%D7%D3&act=input"class="">
+                                    <span class="">&gt;上当当网购买此书</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" href="https://s.taobao.com/search?q=%E5%B0%8F%E7%8E%8B%E5%AD%90&commend=all&search_type=item&cat=33"class="">
+                                    <span class="">&gt;上淘宝网购买此书</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="list-group" id="user_rating">
+                    <a href="#" class="list-group-item active">已评分用户<span class="badge"></span> </a>
+                    <div class="list-group-item">
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

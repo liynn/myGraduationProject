@@ -1,0 +1,300 @@
+.add2cartContainer {
+    overflow: hidden;
+    vertical-align: bottom;
+    line-height: 1
+}
+
+.add2cartContainer .add2cart {
+    margin-right: 0;
+    display: inline-block
+}
+
+#buyinfo .bs {
+    margin: 0
+}
+
+#buyinfo li {
+    padding: 10px 0;
+    position: relative;
+    line-height: 1;
+    border-bottom: 1px solid #eaeaea
+}
+
+#buyinfo li a:hover {
+    background-image: none !important
+}
+
+#buyinfo li a:hover .buylink-price {
+    background: #37a
+}
+
+#buyinfo li .publish, #buyinfo li .other-activity {
+    margin-top: 5px
+}
+
+#buyinfo li .publish a, #buyinfo li .other-activity a {
+    color: #999
+}
+
+#buyinfo li .publish a:hover, #buyinfo li .other-activity a:hover {
+    color: #37a;
+    background: none;
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+#buyinfo li .buylink-price {
+    position: absolute;
+    right: 90px;
+    text-align: right
+}
+
+#buyinfo .more-info {
+    color: #aaa;
+    margin: 6px 0 -2px 0
+}
+
+#buyinfo .more-ebooks {
+    padding: 10px 0;
+    color: #37a;
+    cursor: pointer
+}
+
+#buyinfo .price-page {
+    border-bottom: 0;
+    padding: 15px 0 0
+}
+
+#buyinfo .saved-price {
+    display: none;
+    margin-left: 5px
+}
+
+#buyinfo .cart-tip {
+    float: right;
+    padding-right: 5px
+}
+
+#buyinfo #buyinfo-ebook {
+    margin-bottom: 15px
+}
+
+#buyinfo #buyinfo-ebook .buylink-price {
+    display: inline
+}
+
+#buyinfo #buyinfo-ebook li.no-border {
+    border: 0
+}
+
+#buyinfo-printed {
+    margin-bottom: 15px
+}
+
+#buyinfo-printed.no-border {
+    border-bottom: 0
+}
+
+#buyinfo-printed .more-ebooks {
+    line-height: 1;
+    padding: 10px 0;
+    color: #37a;
+    cursor: pointer;
+    padding: 10px 0 0
+}
+
+#buyinfo-report {
+    display: none
+}
+
+#buyinfo-report .lnk-close-report {
+    float: right;
+    margin-top: -30px;
+    line-height: 14px
+}
+
+#buyinfo-report .item {
+    margin-bottom: 10px
+}
+
+#buyinfo-report .item input {
+    vertical-align: text-bottom;
+    *vertical-align: middle
+}
+
+#buyinfo-report .item label {
+    margin: 0 5px 0 2px
+}
+
+#buyinfo-report .item-submit .bn-flat {
+    margin-right: 10px
+}
+
+#buyinfo-report .item-price input {
+    width: 220px;
+    border: 1px solid #ccc;
+    padding: 4px
+}
+
+#buyinfo-report form {
+    margin: 5px 0 10px
+}
+
+#bi-report-btn {
+    float: right;
+    margin: 2px 0;
+    line-height: 14px;
+    display: none
+}
+
+.bi-vendor-report {
+    color: #aaa
+}
+
+.bi-vendor-report-form {
+    display: none;
+    color: #111;
+    margin: 0 5px;
+    line-height: 25px
+}
+
+.gray_ad {
+    padding: 30px 20px 25px 20px;
+    background: #f6f6f1
+}
+
+.gray_ad h2 {
+    margin-bottom: 6px;
+    font-size: 15px
+}
+
+.gray_ad .ebook-tag {
+    margin-top: 5px;
+    color: #999;
+    font-size: 12px
+}
+
+.bs.more-after {
+    margin-bottom: 0px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #buyinfo li a:hover {
+        background-image: url(https://img3.doubanio.com/f/book/fc4ff7f0a3a7f452f06d586540284b9738f2fe87/pics/book/cart/icon-brown@2x.png);
+        background-size: 16px 12px
+    }
+}
+
+#intervenor-buyinfo .bs {
+    margin: 0
+}
+
+#intervenor-buyinfo li {
+    position: relative;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 0;
+    line-height: 1
+}
+
+#intervenor-buyinfo li .basic-info {
+    color: #494949;
+    font-size: 14px;
+    line-height: 18px
+}
+
+#intervenor-buyinfo li a:hover .comment {
+    color: #f67;
+    opacity: 0.75;
+    filter: alpha(opacity=75)
+}
+
+#intervenor-buyinfo li a:hover .buy-btn {
+    background: #fff;
+    border: 1px solid #e97e7e;
+    border-radius: 2px;
+    color: #e97e7e
+}
+
+#intervenor-buyinfo li a:hover .buylink-price {
+    background: #37a
+}
+
+#intervenor-buyinfo li .buylink-price {
+    position: absolute;
+    right: 90px;
+    text-align: right
+}
+
+#intervenor-buyinfo li .publish, #intervenor-buyinfo li .other-activity {
+    margin-top: 5px
+}
+
+#intervenor-buyinfo li .publish a, #intervenor-buyinfo li .other-activity a {
+    color: #999
+}
+
+#intervenor-buyinfo li .publish a:hover, #intervenor-buyinfo li .other-activity a:hover {
+    color: #37a;
+    background: none;
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+#intervenor-buyinfo .jd-buy-icon {
+    float: left;
+    margin-right: 3px
+}
+
+#intervenor-buyinfo .buy-btn {
+    float: right;
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+    color: #9c9c9c;
+    padding: 0 12px;
+    border: 1px solid transparent
+}
+
+#intervenor-buyinfo .comment {
+    color: #FF8C9C;
+    margin: 6px 0 -2px 0
+}
+
+#intervenor-buyinfo .price-page a {
+    display: inline-block;
+    line-height: 16px !important
+}
+
+#intervenor-buyinfo .price-page {
+    border-bottom: 0;
+    padding: 15px 0 0
+}
+
+#intervenor-buyinfo .saved-price {
+    display: none;
+    margin-left: 5px
+}
+
+#intervenor-buyinfo .cart-tip {
+    float: right;
+    padding-right: 5px
+}
+
+#intervenor-buyinfo #buyinfo-ebook {
+    margin-bottom: 15px
+}
+
+#intervenor-buyinfo #buyinfo-ebook .buylink-price {
+    display: inline
+}
+
+#intervenor-buyinfo #buyinfo-ebook li.no-border {
+    border: 0
+}
+
+#buyinfo-printed .presale-indicator {
+    margin: 0;
+    color: #999;
+    text-indent: 0;
+    background: none
+}
