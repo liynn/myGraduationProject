@@ -101,4 +101,20 @@ public class UserController extends BaseController {
         return map;
     }
 
+    @RequestMapping(value = "/{userId}/itemCF")
+    @ResponseBody
+    public Object itemCF(@PathVariable(value = "userId") long userId, HttpServletRequest request){
+        Map<String,Object> map = new HashMap<>();
+        map.put("list", userService.getItemCFRecdByUserId(userId));
+        return map;
+    }
+
+    @RequestMapping(value = "/{userId}/userCF")
+    @ResponseBody
+    public Object userCF(@PathVariable(value = "userId") long userId, HttpServletRequest request){
+        Map<String,Object> map = new HashMap<>();
+        map.put("list", userService.getUserCFRecdByUserId(userId));
+        return map;
+    }
+
 }

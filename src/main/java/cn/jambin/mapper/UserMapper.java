@@ -33,4 +33,8 @@ public interface UserMapper {
 
     List<UserBookDto> getUserReadedBook(long userId);
 
+    List<UserBookDto> getUserCFRecdByUserId(long userId);
+
+    List<UserBookDto> getItemCFRecdByUserId(long userId);
+
 }

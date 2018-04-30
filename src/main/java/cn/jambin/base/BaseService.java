@@ -50,24 +50,6 @@ public interface BaseService<Record, Example> {
 
 	int updateByPrimaryKey(Record record);
 
-	/**
-	 *
-	 * @param ids
-	 * @return 删除的的记录个数
-	 */
-	int deleteByPrimaryKeys(String ids);
-
-	/**
-	 * 锁定记录（设置state为0）
-	 * @param ids
-	 * @param entity_class 实体类Class
-	 * @param setId_Method 由于每个实体类的setId方法名不一样，所以通过灵活传入的方法
-	 * @param isIdInt 由于有个别的id主键是Long类型。故true代表Integer false代表Long类型
-	 * @param isStateByte 由于一些旧的表state是Integer类型。 true代表为Byte类型 为false则代表是Integer
-	 * @return 锁定的记录个数
-	 */
-	int lockByPrimaryKeys(String ids, Class entity_class, String setId_Method, boolean isIdInt, boolean isStateByte);
-	int lockByPrimaryKeys(String ids, Class entity_class, String setId_Method);
 	void initMapper();
 
 }

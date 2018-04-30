@@ -107,10 +107,10 @@ function init(pageNum) {
                     "            </div>\n" +
                     "        </div>"
 
-                $("#search_content").html(html);
-                index_state.pageCount = data.pageCount;
-                pageDeal();
             }
+            $("#search_content").html(html);
+            index_state.pageCount = data.pageCount;
+            pageDeal();
         }
 
 

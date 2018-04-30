@@ -32,4 +32,15 @@ public class UserServiceimpl extends BaseServiceImpl<UserMapper, User, UserExamp
     public List<UserBookDto> getAlsRecdByUserId(long userId){
         return userMapper.getAlsRecdByUserId(userId);
     }
+
+    @Override
+    public List<UserBookDto> getItemCFRecdByUserId(long userId){
+        return userMapper.getItemCFRecdByUserId(userId);
+    }
+
+    @Override
+    public List<UserBookDto> getUserCFRecdByUserId(long userId){
+        return userMapper.getUserCFRecdByUserId(userId);
+    }
+
 }

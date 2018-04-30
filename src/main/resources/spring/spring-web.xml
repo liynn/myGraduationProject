@@ -12,30 +12,21 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
-
     <!--配置spring mvc-->
     <!--1,开启springmvc注解模式
     a.自动注册DefaultAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
     b.默认提供一系列的功能:数据绑定，数字和日期的format@NumberFormat,@DateTimeFormat
     c:xml,json的默认读写支持-->
     <mvc:annotation-driven/>
-
     <!--
         1).加入对静态资源处理：js,gif,png
         2).允许使用 "/" 做整体映射
     -->
     <mvc:default-servlet-handler/>
-
     <!--<mvc:resources location="/resources/" mapping="/resources/**"/>-->
     <!--4:扫描web相关的controller-->
     <context:component-scan base-package="cn.jambin.controller"/>
     <context:component-scan base-package="cn.jambin.base"/>
     <!--<aop:config proxy-target-class="true"/>-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-    <!-- 上传文件配置 20*1024*1024即20M resolveLazily属性启用是为了推迟文件解析，以便捕获文件大小异常 -->
-    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-        <!--<property name="maxUploadSize" value="20971520"/>-->
-        <!--<property name="defaultEncoding" value="UTF-8"/>-->
-        <!--<property name="resolveLazily" value="true"/>-->
-    <!--</bean>-->
 </beans>

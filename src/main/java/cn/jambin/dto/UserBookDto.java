@@ -12,6 +12,10 @@ public class UserBookDto {
 
     private String image;
 
+    private String tags;
+
+    private String publisher;
+
     private double rating;
 
     public long getBookId() {
@@ -52,5 +56,21 @@ public class UserBookDto {
 
     public void setRating(double rating) {
         this.rating = new BigDecimal(rating).setScale(1, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 }

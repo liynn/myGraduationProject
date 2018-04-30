@@ -14,4 +14,8 @@ public interface UserService extends BaseService<User,UserExample> {
 
     List<UserBookDto> getAlsRecdByUserId(long userId);
 
+    List<UserBookDto> getItemCFRecdByUserId(long userId);
+
+    List<UserBookDto> getUserCFRecdByUserId(long userId);
+
 }
