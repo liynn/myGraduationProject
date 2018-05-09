@@ -8,31 +8,15 @@
         <!--使用jdbc的getGeneratekeys获取自增主键值-->
         <setting name="useGeneratedKeys" value="true"/>
         <!--使用列别名替换列名　　默认值为true
-        select name as title(实体中的属性名是title) form table;
-        开启后mybatis会自动帮我们把表中name的值赋到对应实体的title属性中
         -->
         <setting name="useColumnLabel" value="true"/>
-
         <!--开启驼峰命名转换Table:create_time到 Entity(createTime)-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
-    <!--sql语句输出-->
-        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
-        <!--<setting name="logImpl" value="LOG4J"/>-->
     </settings>
     <!-- 插件-->
     <plugins>
         <!-- 分页插件 -->
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <!--
-            分页插件会自动检测当前的数据库链接，自动选择合适的分页方式。 你可以配置helperDialect属性来指定分页插件使用哪种方言。配置时，可以使用下面的缩写值：
-            oracle,mysql,mariadb,sqlite,hsqldb,postgresql,db2,sqlserver,informix,h2,sqlserver2012,derby
-            特别注意：使用 SqlServer2012 数据库时，需要手动指定为 sqlserver2012，否则会使用 SqlServer2005 的方式进行分页
-            -->
-            <!--<property name="helperDialect" value="mysql"/>-->
-            <!--
-            默认值为 false，该参数对使用 RowBounds 作为分页参数时有效。
-            当该参数设置为 true 时，会将 RowBounds 中的 offset 参数当成 pageNum 使用，可以用页码和页面大小两个参数进行分页。
-            -->
             <property name="offsetAsPageNum" value="false"/>
             <!--
             默认值为false，该参数对使用 RowBounds 作为分页参数时有效。 当该参数设置为true时，使用 RowBounds 分页会进行 count 查询。

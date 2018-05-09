@@ -19,21 +19,21 @@ public abstract class BaseAlsRating<M extends BaseAlsRating<M>> extends Model<M>
 	}
 
 	public M setUserId(Integer userId) {
-		set("userId", userId);
+		set("user_id", userId);
 		return (M)this;
 	}
 
 	public Integer getUserId() {
-		return getInt("userId");
+		return getInt("user_id");
 	}
 
 	public M setBookId(Integer bookId) {
-		set("bookId", bookId);
+		set("book_id", bookId);
 		return (M)this;
 	}
 
 	public Integer getBookId() {
-		return getInt("bookId");
+		return getInt("book_id");
 	}
 
 	public M setRating(Double rating) {

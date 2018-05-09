@@ -18,4 +18,6 @@ public interface UserService extends BaseService<User,UserExample> {
 
     List<UserBookDto> getUserCFRecdByUserId(long userId);
 
+    List<UserBookDto> recommend(long userId);
+
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>书籍详情</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../css/star.css">
     <link rel="stylesheet" href="../css/book.css">
 
+    <link rel="stylesheet" href="https://img3.doubanio.com/misc/mixed_static/74217a5d209d0551.css">
+    <link rel="stylesheet" href="../css/book.css">
 
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -142,10 +144,25 @@
 
                         </div>
                     </div>
+                    <!--已评分用户的评分-->
+                    <div id="userRating"></div>
                 </div>
                 <br clear="all">
             </div>
 
+            <div class="row" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            标签
+                        </h3>
+                    </div>
+                    <div  id="tag" style="margin-top: 10px; margin-left: 10px;">
+
+                    </div>
+                </div>
+
+            </div>
             <!--@@@内容简介-->
             <div class="row">
                 <div class="panel panel-default">
@@ -253,6 +270,20 @@
                             · · · · · · (<a
                                 href="javascript:$('#catalog_full').hide();$('#catalog_short').show();void(0);">收起</a>)
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--@@@作者简介-->
+            <div class="row" id="similarity_book_div">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            相似图书推荐
+                        </h3>
+                    </div>
+                    <div class="panel-body" id="similarity_book">
+
                     </div>
                 </div>
             </div>

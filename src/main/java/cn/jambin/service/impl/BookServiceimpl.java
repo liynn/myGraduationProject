@@ -64,5 +64,9 @@ public class BookServiceimpl extends BaseServiceImpl<BookMapper, Book, BookExamp
         return bookMapper.getBookByTag(name);
     }
 
+    @Override
+    public List<BookDto> getSimilarityBookByBookId(long bookId){
+        return bookMapper.getSimilarityBookByBookId(bookId);
+    }
 
 }

@@ -183,3 +183,9 @@ a:link, a:visited, a:focus {
 .indent {
     /*word-break: break-all;*/
 }
+
+
+
+#tag li {
+    display: inline;
+}

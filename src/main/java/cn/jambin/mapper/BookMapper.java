@@ -49,4 +49,6 @@ public interface BookMapper {
 
     List<BookDto> getBookByTag(String name);
 
+    List<BookDto> getSimilarityBookByBookId(long bookId);
+
 }

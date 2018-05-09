@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/star.css">
+
+
+    <link href="https://img3.doubanio.com/f/book/c562010083631a8b5625ac07bc2a6e7e4466b6f6/css/book/master.css" rel="stylesheet" type="text/css">
+    <!--<link href="https://img3.doubanio.com/f/book/8a9d097c416aabac4f7e45f5d2ce9c6834b3fc7a/css/book/base/init.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://img3.doubanio.com/f/book/1eabe3f4e416e77dbafd2ef9bc830fa2ac7a8d4c/css/book/subject.css">
+    <link rel="stylesheet" href="https://img3.doubanio.com/misc/mixed_static/74217a5d209d0551.css">
+    <link rel="stylesheet" href="../css/book.css">
+
+    <style>
+        .rating_nums{
+            color: #e09015;
+        }
+    </style>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+    <script src="/js/page.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+
+<div class="container">
+    <!--导航栏-->
+    <div class="row" id="navBar">
+        <script>
+            $("#navBar").load("/pages/navBar.html");
+        </script>
+    </div>
+    <!--<br>-->
+
+
+
+    <div class="row clearfix" id="tag" style="margin-top: 10px; margin-left: 10px;">
+        <script>
+            $("#tag").load("/pages/tag.html");
+        </script>
+    </div>
+
+    <div class="" style="margin-bottom: 20px">
+        <div id="title">
+        </div>
+        <form class="navbar-form" role="search" action="/tag" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search_name" name="str" placeholder="检索其他标签"/>
+            </div> <button type="submit" class="btn btn-default">检索</button>
+        </form>
+    </div>
+
+
+    <div class="row clearfix" id="search_content">
+    </div>
+
+    <div id="pageOp" class="panel-footer" style="display:none">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li id="previous" class="pageC disabled">
+                    <a href="javascript:void(0)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="pageN active"><a href="javascript:void(0)">1</a></li>
+                <li class="pageN"><a href="javascript:void(0)">2</a></li>
+                <li class="pageN"><a href="javascript:void(0)">3</a></li>
+                <li class="pageN"><a href="javascript:void(0)">4</a></li>
+                <li class="pageN"><a href="javascript:void(0)">5</a></li>
+                <li class="pageN"><a href="javascript:void(0)">6</a></li>
+                <li class="pageN"><a href="javascript:void(0)">7</a></li>
+                <li class="pageN"><a href="javascript:void(0)">8</a></li>
+                <li class="pageN"><a href="javascript:void(0)">9</a></li>
+                <li id="next" class='pageC'>
+                    <a href="javascript:void(0)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

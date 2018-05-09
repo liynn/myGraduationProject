@@ -28,7 +28,6 @@ public class BaseController {
     public Object exceptionHandler(HttpServletRequest request, HttpServletResponse response, Exception exception) {
         _log.error("统一异常处理：", exception);
         request.setAttribute("ex", exception);
-        System.out.println(request.getMethod());
         if (null != request.getHeader("X-Requested-With") && request.getHeader("X-Requested-With").equalsIgnoreCase("XMLHttpRequest")) {
             request.setAttribute("requestHeader", "ajax");
         }

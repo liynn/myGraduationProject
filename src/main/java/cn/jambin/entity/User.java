@@ -1,7 +1,6 @@
 package cn.jambin.entity;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User {
     private Integer userId;
 

@@ -1,10 +1,7 @@
 package cn.jambin.CF.spark;
 
 import cn.jambin.model.AlsRating;
-import cn.jambin.model._MappingKit;
-import com.jfinal.kit.PropKit;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.druid.DruidPlugin;
+import cn.jambin.util.JfinalDb;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.ml.evaluation.RegressionEvaluator;
 import org.apache.spark.ml.recommendation.ALS;
@@ -59,58 +56,40 @@ public class DoubanBookALS {
     }
 
     public static void main(String[] args) throws Exception{
-        // 测试数据文件路径
-        // 使用本地所有可用线程local[*]
+        // 使用本地所有可用线程local[*]模式
         SparkSession spark = SparkSession.builder().master("local[*]").appName("JavaALSExample").getOrCreate();
-//        JavaRDD<Rating> ratingsRDD = spark.read().textFile(path).javaRDD().map(Rating::parseRating);
-        // $example on$
+        //加载评分数据集并转化为JavaRDD
         JavaRDD<Rating> ratingsRDD = spark
                 .read().textFile("/Users/jambin/code/data/rating.csv").javaRDD()
                 .map(Rating::parseRating);
         Dataset<Row> ratings = spark.createDataFrame(ratingsRDD, Rating.class);
-        // 按比例随机拆分数据
+        // 拆分数据，80%的训练集和20%的测试集
         Dataset<Row>[] splits = ratings.randomSplit(new double[] { 0.8, 0.2 },2);
-        Dataset<Row> training = splits[0];
-        Dataset<Row> test = splits[1];
-
+        Dataset<Row> trainingData = splits[0];
+        Dataset<Row> testingData = splits[1];
         // 对训练数据集使用ALS算法构建建议模型
-        ALS als = new ALS().setMaxIter(5).setRegParam(0.01).setUserCol("userId").setItemCol("bookId")
-                .setRatingCol("rating");
-        ALSModel model = als.fit(training);
+        ALS als = new ALS().setRank(12).setMaxIter(12).setRegParam(0.2)
+                .setUserCol("userId").setItemCol("bookId").setRatingCol("rating");
+        ALSModel model = als.fit(trainingData);
+        // 通过计算均方根误差RMSE(Root Mean Squared Error)来评估模型
+        Dataset<Row> predictions = model.transform(testingData);
 
-        // Evaluate the model by computing the RMSE on the test data
-        // 通过计算均方根误差RMSE(Root Mean Squared Error)对测试数据集评估模型
-        // 注意下面使用冷启动策略drop，确保不会有NaN评估指标
-        model.setColdStartStrategy("drop");
-        Dataset<Row> predictions = model.transform(test);
-
-        RegressionEvaluator evaluator = new RegressionEvaluator().setMetricName("rmse").setLabelCol("rating")
-                .setPredictionCol("prediction");
+        RegressionEvaluator evaluator = new RegressionEvaluator().setMetricName("rmse")
+                .setLabelCol("rating").setPredictionCol("prediction");
         double rmse = evaluator.evaluate(predictions);
         // 打印均方根误差
-        System.out.println("Root-mean-square error = " + rmse);
-
-    // Generate top 10 movie recommendations for each user0l
-
+        System.out.println("均方根误差RMSE = " + rmse);
+        //为每一个用户推荐十本书籍
         Dataset<Row> userRecs = model.recommendForAllUsers(10);
-
-
-        predictUser(userRecs, 3);
-//        userRecs.show(50000);
-
-
+        //保存推荐结果到数据库
+        saveToDb(userRecs);
     }
+// 注意下面使用冷启动策略drop，确保不会有NaN评估指标
+//        model.setColdStartStrategy("drop");
 
     public static void saveToDb(Dataset<Row> userRecs){
         try {
-            PropKit.use("a_little_config.txt");
-            DruidPlugin dp = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
-            ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
-            // 所有映射在 MappingKit 中自动化搞定
-            _MappingKit.mapping(arp);
-            // 与 jfinal web 环境唯一的不同是要手动调用一次相关插件的start()方法
-            dp.start();
-            arp.start();
+            JfinalDb.start();
             userRecs.javaRDD().foreach(
                     row->
                             row.getList(1).forEach(

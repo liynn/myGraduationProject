@@ -2,12 +2,12 @@ package cn.jambin.controller;
 
 import cn.jambin.base.BaseController;
 import cn.jambin.base.BaseResult;
+import cn.jambin.base.Constant;
 import cn.jambin.dto.BookDto;
 import cn.jambin.dto.UserRatingVo;
-import cn.jambin.entity.BookExample;
-import cn.jambin.entity.BookWithBLOBs;
-import cn.jambin.entity.UserExample;
+import cn.jambin.entity.*;
 import cn.jambin.service.BookService;
+import cn.jambin.service.RatingService;
 import com.github.pagehelper.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,9 @@ public class BookController extends BaseController {
 
     @Autowired
     BookService bookService;
+
+    @Autowired
+    RatingService ratingService;
 
     /**
      * 获取评分最高的100本书
@@ -121,6 +125,7 @@ public class BookController extends BaseController {
         Map<String,Object> map = new HashMap<>();
         map.put("pageCount", pageCount);
         map.put("list", rows);
+        map.put("str", str);
         return map;
     }
 
@@ -153,8 +158,20 @@ public class BookController extends BaseController {
         Map<String,Object> map = new HashMap<>();
         map.put("pageCount", pageCount);
         map.put("list", rows);
+        map.put("str", str);
         return map;
     }
 
+    /**
+     * 获取相似图书s
+     */
+    @RequestMapping(value = "/similarity/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object getSimilarityBookByBookId(@PathVariable(value = "id") long str) throws Exception{
+        List<BookDto> rows = bookService.getSimilarityBookByBookId(str);
+        Map<String,Object> map = new HashMap<>();
+        map.put("list", rows);
+        return map;
+    }
 
 }

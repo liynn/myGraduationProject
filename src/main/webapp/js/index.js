@@ -16,7 +16,7 @@ function getTopReadBook() {
                 "<div class=\"thumbnail\">" +
             "<a href=\"/book/"+data.list[i].bookId+ "\" > <img alt=\"101x146\" src=\""+data.list[i].image+ "\"></a>" +
             // "<div class=\"caption\">" +
-            "<a href=\"/book/\" " +data.list[i].bookId+ "><h3>" + data.list[i].title+"</h3>" +
+            "<a href=\"/book/" +data.list[i].bookId+ "\"><h3>" + data.list[i].title+"</h3></a>" +
             "</div></div>"
         }
         $("#topReadBook_body").html(html);
@@ -37,7 +37,7 @@ function getTopRatingBook() {
                 "<div class=\"thumbnail\">" +
                 "<a href=\"/book/"+data.list[i].bookId+ "\" > <img alt=\"101x146\" src=\""+data.list[i].image+ "\"></a>" +
                 // "<div class=\"caption\">" +
-                "<a href=\"/book/\" " +data.list[i].bookId+ "><h3>" + data.list[i].title+"</h3>" +
+                "<a href=\"/book/" +data.list[i].bookId+ "\"><h3>" + data.list[i].title+"</h3></a>" +
                 "</div></div>"
         }
         $("#topRatingBook_body").html(html);

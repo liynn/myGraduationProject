@@ -22,5 +22,5 @@ public interface BookService extends BaseService<Book,BookExample> {
 
     List<BookDto> getBookByTag(String name, Integer pageNum, Integer pageSize);
 
-
+    List<BookDto> getSimilarityBookByBookId(long bookId);
 }

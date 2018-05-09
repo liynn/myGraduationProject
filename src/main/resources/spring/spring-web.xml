@@ -29,4 +29,6 @@
     <context:component-scan base-package="cn.jambin.base"/>
     <!--<aop:config proxy-target-class="true"/>-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <bean class="cn.jambin.intercept.LogAspect"/>
 </beans>

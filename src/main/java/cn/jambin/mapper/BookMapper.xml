@@ -516,5 +516,9 @@
     bs.total DESC
   </select>
 
+  <select id="getSimilarityBookByBookId" resultType="cn.jambin.dto.BookDto">
+    SELECT b.* FROM book_similarity bs LEFT JOIN book b on (bs.similarity_book_id = b.book_id) WHERE bs.book_id = #{bookId} ORDER BY bs.similarity DESC
+  </select>
+
 
 </mapper>

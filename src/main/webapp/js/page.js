@@ -51,16 +51,16 @@ function init(pageNum) {
     if(url.indexOf("search") >= 0 ) {
         var str = getUrlParam("str");
         url="/book/search";
-        $("#search_name").attr("placeholder", str);
     }else if(url.indexOf("topRead") >= 0 ) {
+        $("title").html("阅读数排行榜");
+        $("#title").html("<h1>阅读数排行榜</h1>");
         url="/book/topRead";
     }else if(url.indexOf("topRating") >= 0 ) {
+        $("title").html("评分排行榜");
+        $("#title").html("<h1>评分排行榜</h1>");
         url="/book/topRating";
     }else if(url.indexOf("tag") >= 0 ) {
         var url_2 = window.location.pathname;
-        var str = url.substring(url_2.lastIndexOf("/")+1);
-        var str = getUrlParam("str");
-        // str = encodeURI(str);
         url="/book"+url_2;
     }
     // var title = url.split("=")[1];
@@ -71,12 +71,31 @@ function init(pageNum) {
         pageNum: pageNum,
         pageSize: 10
     }, function(data) {
+        if (data.success==false)
+            return;
+        $('#pageOp').show()
         // $(".topReadBook").html("");
         var html = ""
         var length = data.list.length, i;
+        if(url=="/book/search"){
+            str = data.str;
+            $("title").html("搜索\""+str+"\"的结果");
+            $("#title").html("<h1>搜索\""+str+"\"</h1>");
+            $("#search_name").attr("placeholder", str);
+        }else if(url.indexOf("tag") >= 0 ){
+            str = data.str;
+            if (str=="@index"){
+                $("title").html("标签");
+                $("#pageOp").hide();
+                return;
+            }else {
+                $("title").html("标签\""+str+"\"");
+                $("#title").html("<h1>标签\""+str+"\"</h1>");
+            }
+
+        }
         if (length==0 && url=="/book/search"){
-            html = "<h1>搜索"+str+"</h1>"
-                +"<p>没有找到关于\" " +str+ " \"的相关内容，换个关键字试试</p>";
+            html = "<p>没有找到关于\" " +str+ " \"的相关内容，换个关键字试试</p>";
 
             $("#search_content").html(html);
             $("#pageOp").hide();
@@ -101,14 +120,15 @@ function init(pageNum) {
                     "                    <h4 class=\"media-heading\"><a href=\"/book/"+data.list[i].bookId+ "\">"+ data.list[i].title +
                     "                    </a></h4>\n" +
                     "                    <div class=\"ll bigstar"+ avg+"\"></div><span class=\"rating_nums\">"+data.list[i].avgRating+"</span>("+data.list[i].total+"人评价)\n" +
-                    "                    <p>作者："+data.list[i].author+" 出版社："+ data.list[i].publisher +"</p>\n" +
-                    "                    <p>"+ data.list[i].summary.substr(0, 100) +"...</p>\n" +
+                    "                    <p>作者："+data.list[i].author+" <br>出版社："+ data.list[i].publisher +"</p>\n" +
+                    "                    <p>"+ data.list[i].summary.substr(0, 80) +"...</p>\n" +
                     "                </div>\n" +
                     "            </div>\n" +
                     "        </div>"
 
             }
             $("#search_content").html(html);
+
             index_state.pageCount = data.pageCount;
             pageDeal();
         }

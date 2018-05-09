@@ -5,14 +5,25 @@ index_state.pageCount = 1;
 
 $(function(){
     initBookInfo();
-    /*翻页*/
-    // $('#prePage').click(function() {
-    //     initUserRating(index_state.page-1);
-    // });
-    //
-    // $('#lastPage').click(function() {
-    //     initUserRating(index_state.page+1);
-    // });
+    initUserRating();
+
+
+    $('#star1').click(function() {
+        rating(1);
+    });
+    $('#star2').click(function() {
+        rating(2);
+    });
+    $('#star3').click(function() {
+        rating(3);
+    });
+    $('#star4').click(function() {
+        rating(4);
+    });
+    $('#star5').click(function() {
+        rating(5);
+    });
+
 });
 
 
@@ -28,6 +39,9 @@ function initBookInfo() {
         /*右上角评分信息填充*/
         initRatingInfo(data);
 
+        /*书籍标签*/
+        initTag(data);
+
         //初始化书籍介绍
         initBookIntro(data);
 
@@ -37,7 +51,9 @@ function initBookInfo() {
 
         initBuyInfo(data);
 
-        initUserRating(1);
+        initAllUserRating(1);
+
+        getSimilarityBook();
 
     }, 'json');
 
@@ -45,6 +61,7 @@ function initBookInfo() {
 
 /*左上角书籍信息填充*/
 function initBookBaseInfo (data) {
+    $("title").html(data.title);
 
     //左上角书籍信息数据
 
@@ -63,8 +80,7 @@ function initBookBaseInfo (data) {
 
     var html =
         "                                <span>\n" +
-        "                                    <span class=\"pl\"> 作者</span>:\n" +
-        "                                    <a class=\"\" href=\"https://book.douban.com/search/" + data.author + "\"> "+data.author+" </a>\n" +
+        "                                    <span class=\"pl\"> 作者</span>:\n" +data.author +
         "                                </span>\n" +
         "                                <br>\n" +
         "                                <span class=\"pl\">出版社:</span> " + data.publisher + "<br>\n" +
@@ -104,6 +120,22 @@ function initRatingInfo (data) {
     else
         avg = avg-remainder+5;
     $("#rating_star").addClass("bigstar" + avg);
+}
+
+//初始化书籍标签
+function initTag(data){
+    var tags = data.tags.split(",");
+    var html = " <ul class=\"clearfix hot-tags-col5 s\">";
+    var length = tags.length;
+    for(i= 0; i< length; i++) {
+
+        html += "<li>" +
+                "  <a href=\"/tag/" +tags[i]+ "\" class=\"tag\">" +tags[i]+ "</a>" +
+                "</li>"
+    }
+    html += "</ul>";
+    $("#tag").html(html);
+
 }
 
 //初始化书籍介绍
@@ -157,7 +189,7 @@ function initBuyInfo(data) {
     $("#buy_info li:eq(3) a").attr("href","https://s.taobao.com/search?q="+ data.title +"&commend=all&search_type=item&cat=33");
 }
 
-function initUserRating(pageNum) {
+function initAllUserRating(pageNum) {
     index_state.page = pageNum;
     var url = window.location.pathname;
     var id = url.substring(url.lastIndexOf("/")+1);
@@ -187,9 +219,9 @@ function initUserRating(pageNum) {
         }
 
         if (data.pageCount>1){
-            var str = " <button class='btn' onclick=\"initUserRating("+(pageNum+1)+")\" id='nextPage'>下一页</button>";
+            var str = " <button class='btn' onclick=\"initAllUserRating("+(pageNum+1)+")\" id='nextPage'>下一页</button>";
             if (pageNum!=1){
-                str += " <button class='btn' style='float: left' onclick=\"initUserRating("+(pageNum-1)+")\" id='prePage'>上一页</button>";
+                str += " <button class='btn' style='float: left' onclick=\"initAllUserRating("+(pageNum-1)+")\" id='prePage'>上一页</button>";
             }
 
             html += "<div class=\"list-group-item\">\n" + str + "</div>"
@@ -201,3 +233,57 @@ function initUserRating(pageNum) {
 
 }
 
+
+function rating(rating) {
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf("/")+1);
+    $.post("/user/rating", {
+        bookId: id,
+        rating: rating,
+    }, function(data) {
+        if(data.success==true)
+            alert("评分成功");
+        else
+            alert(data.info);
+
+    }, 'json');
+
+}
+
+function initUserRating() {
+    var url = window.location.pathname;
+    $.post("/user"+url, {
+    }, function(data) {
+        if(data.success==true){
+            $("#interest_sect_level").hide();
+
+            $("#userRating").html("你对此书的评分<div class=\" bigstar" + data.data*10 + "\"></div>");
+        }
+    }, 'json');
+
+}
+
+
+/*加载相似书籍*/
+function getSimilarityBook() {
+    var url = window.location.pathname;
+    var id = url.substring(url.lastIndexOf("/")+1);
+    $.post("/book/similarity/"+id, {
+    }, function(data) {
+        var html = ""
+        var length = data.list.length, i;
+        if (length==0){
+            $("#similarity_book").html("暂无");
+            return;
+        }
+        for(i= 0; i< length; i++) {
+            html = html+"<div class=\"col-md-3 col-sm-6 column5\">" +
+                "<div class=\"thumbnail\">" +
+                "<a href=\"/book/"+data.list[i].bookId+ "\" > <img alt=\"101x146\" src=\""+data.list[i].image+ "\"></a>" +
+                "<a href=\"/book/" +data.list[i].bookId+ "\"><p>" + data.list[i].title+"</p></a>" +
+                "</div></div>"
+        }
+        $("#similarity_book").html(html);
+    }, 'json');
+
+}
