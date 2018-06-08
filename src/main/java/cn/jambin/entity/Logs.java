@@ -120,6 +120,7 @@ public class Logs {
     }
 
     public void setResult(String result) {
+        //
         this.result = result == null ? null : result.trim();
     }
 }
