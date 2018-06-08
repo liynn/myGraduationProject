@@ -20,6 +20,7 @@ import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 public class UserRecommenderDoubanBook {
@@ -45,8 +46,6 @@ public class UserRecommenderDoubanBook {
         RMSRecommenderEvaluator evaluator = new RMSRecommenderEvaluator();
         double score = evaluator.evaluate(recommenderBuilder, null, dataModel, 0.9, 0.5);
         System.out.println("基于Pearson相关系数的User-based CF的RMSE是"+score);
-        if (true)
-            return;
 
         PropKit.use("a_little_config.txt");
         DruidPlugin dp = new DruidPlugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
@@ -55,6 +54,7 @@ public class UserRecommenderDoubanBook {
         arp.start();
         LongPrimitiveIterator iterator = dataModel.getUserIDs();
         long userId;
+        Date date = new Date();
         while (iterator.hasNext()){
             userId = iterator.nextLong();
             List<RecommendedItem> recommendedItems = recommender.recommend(userId, 10);
@@ -63,8 +63,8 @@ public class UserRecommenderDoubanBook {
                 re.set("userId", userId);
                 re.set("bookId", recommendedItem.getItemID());
                 re.set("rating", recommendedItem.getValue());
+                re.set("ctime", date);
                 Db.save("userbased_recommend", re);
-                re=null;
             }
         }
         System.out.println("Recommended for "+dataModel.getNumUsers()+" users ");

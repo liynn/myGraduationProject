@@ -18,7 +18,7 @@ import java.awt.print.Book;
 public class _MappingKit {
 	
 	public static void mapping(ActiveRecordPlugin arp) {
-		arp.addMapping("als_rating", "id", AlsRating.class);
+		arp.addMapping("als_recommend", "id", AlsRating.class);
 	}
 }
 

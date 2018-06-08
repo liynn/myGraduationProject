@@ -28,7 +28,7 @@ function getUserReadedBook() {
                 "        </div>"
 
         }
-        html = "<h2>用户看过的书籍</h2>"+html;
+        html = "<h2>已评分书籍</h2>"+html;
         $("#user_readed_book").html(html);
     }, 'json');
 

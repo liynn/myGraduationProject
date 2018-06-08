@@ -45,4 +45,13 @@ public abstract class BaseAlsRating<M extends BaseAlsRating<M>> extends Model<M>
 		return getDouble("rating");
 	}
 
+	public M setCtime(java.util.Date ctime) {
+		set("ctime", ctime);
+		return (M)this;
+	}
+
+	public java.util.Date getCtime() {
+		return get("ctime");
+	}
+
 }

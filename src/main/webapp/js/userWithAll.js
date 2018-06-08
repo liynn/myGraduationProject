@@ -1,8 +1,11 @@
 $(function(){
     getUserReadedBook();
-    getAlsRecdBook();
-    getUserCFBook();
-    getItemCFBook();
+    // getAlsRecdBook();
+    // getUserCFBook();
+    // getItemCFBook();
+    getAlsRecdBook1();
+    getUserCFBook1();
+    getItemCFBook1();
 });
 
 
@@ -121,6 +124,62 @@ function getItemCFBook() {
                 "            </div>\n" +
                 "        </div>"
 
+        }
+        html = "<h2>itemCF推荐</h2>"+html;
+        $("#itemCF_recd_book").html(html);
+    }, 'json');
+}
+
+
+
+function getAlsRecdBook1() {
+    var url = window.location.pathname;
+    $.post(url.replace("/all","")+"/als", {
+    }, function(data) {
+        var html = ""
+        var length = data.list.length, i;
+        for(i= 0; i< length; i++) {
+            html = html+"<div class=\"col-md-3 col-sm-6 column5\">" +
+                "<div class=\"thumbnail\">" +
+                "<a href=\"/book/"+data.list[i].bookId+ "\" > <img alt=\"101x146\" src=\""+data.list[i].image+ "\"></a>" +
+                "<a href=\"/book/" +data.list[i].bookId+ "\"><p>" + data.list[i].title+"</p></a>" +
+                "</div></div>"
+        }
+        html = "<h2>ALS推荐</h2>"+html;
+        $("#als_recd_book").html(html);
+    }, 'json');
+
+}
+
+function getUserCFBook1() {
+    var url = window.location.pathname;
+    $.post(url.replace("/all","") + "/userCF", {}, function (data) {
+        var html = ""
+        var length = data.list.length, i;
+        for(i= 0; i< length; i++) {
+            html = html+"<div class=\"col-md-3 col-sm-6 column5\">" +
+                "<div class=\"thumbnail\">" +
+                "<a href=\"/book/"+data.list[i].bookId+ "\" > <img alt=\"101x146\" src=\""+data.list[i].image+ "\"></a>" +
+                "<a href=\"/book/" +data.list[i].bookId+ "\"><p>" + data.list[i].title+"</p></a>" +
+                "</div></div>"
+        }
+        html = "<h2>userCF推荐</h2>" + html;
+        $("#userCF_recd_book").html(html);
+    }, 'json');
+}
+
+function getItemCFBook1() {
+    var url = window.location.pathname;
+    $.post(url.replace("/all","")+"/itemCF", {
+    }, function(data) {
+        var html = ""
+        var length = data.list.length, i;
+        for(i= 0; i< length; i++) {
+            html = html+"<div class=\"col-md-3 col-sm-6 column5\">" +
+                "<div class=\"thumbnail\">" +
+                "<a href=\"/book/"+data.list[i].bookId+ "\" > <img alt=\"101x146\" src=\""+data.list[i].image+ "\"></a>" +
+                "<a href=\"/book/" +data.list[i].bookId+ "\"><p>" + data.list[i].title+"</p></a>" +
+                "</div></div>"
         }
         html = "<h2>itemCF推荐</h2>"+html;
         $("#itemCF_recd_book").html(html);

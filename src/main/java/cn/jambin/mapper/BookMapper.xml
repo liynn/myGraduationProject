@@ -517,7 +517,14 @@
   </select>
 
   <select id="getSimilarityBookByBookId" resultType="cn.jambin.dto.BookDto">
-    SELECT b.* FROM book_similarity bs LEFT JOIN book b on (bs.similarity_book_id = b.book_id) WHERE bs.book_id = #{bookId} ORDER BY bs.similarity DESC
+    SELECT
+      DISTINCT(b.book_id), b.*, bs.ctime , bs.similarity
+    FROM
+      book_similarity bs LEFT JOIN book b on (bs.similarity_book_id = b.book_id)
+    WHERE
+      bs.book_id = #{bookId}
+    ORDER BY bs.ctime DESC, bs.similarity DESC
+    limit 10
   </select>
 
 

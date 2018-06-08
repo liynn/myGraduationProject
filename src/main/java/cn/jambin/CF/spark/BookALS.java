@@ -11,8 +11,9 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class DoubanBookALS {
+public class BookALS {
 
     public static class Rating implements Serializable {
 
@@ -68,9 +69,11 @@ public class DoubanBookALS {
         Dataset<Row> trainingData = splits[0];
         Dataset<Row> testingData = splits[1];
         // 对训练数据集使用ALS算法构建建议模型
-        ALS als = new ALS().setRank(12).setMaxIter(12).setRegParam(0.2)
-                .setUserCol("userId").setItemCol("bookId").setRatingCol("rating");
+        ALS als = new ALS().setRank(10).setMaxIter(10).setRegParam(0.2)
+                .setUserCol("userId").setItemCol("bookId").setRatingCol("rating")
+                .setImplicitPrefs(true).setAlpha(1.5);
         ALSModel model = als.fit(trainingData);
+        model.setColdStartStrategy("drop");
         // 通过计算均方根误差RMSE(Root Mean Squared Error)来评估模型
         Dataset<Row> predictions = model.transform(testingData);
 
@@ -78,9 +81,12 @@ public class DoubanBookALS {
                 .setLabelCol("rating").setPredictionCol("prediction");
         double rmse = evaluator.evaluate(predictions);
         // 打印均方根误差
-        System.out.println("均方根误差RMSE = " + rmse);
+        System.out.println("ALS均方根误差RMSE = " + rmse);
+//        if(true)
+//            return;
         //为每一个用户推荐十本书籍
         Dataset<Row> userRecs = model.recommendForAllUsers(10);
+//        predictUser(userRecs, 3);
         //保存推荐结果到数据库
         saveToDb(userRecs);
     }
@@ -88,6 +94,7 @@ public class DoubanBookALS {
 //        model.setColdStartStrategy("drop");
 
     public static void saveToDb(Dataset<Row> userRecs){
+        Date date = new Date();
         try {
             JfinalDb.start();
             userRecs.javaRDD().foreach(
@@ -103,6 +110,7 @@ public class DoubanBookALS {
                                             alsRating.setUserId(userId);
                                             alsRating.setBookId(Integer.parseInt(str.split(",")[0]));
                                             alsRating.setRating(Double.parseDouble(str.split(",")[1]));
+                                            alsRating.setCtime(date);
                                             alsRating.save();
                                         }catch (Exception x){
 
@@ -118,6 +126,24 @@ public class DoubanBookALS {
     }
 
     public static void predictUser(Dataset<Row> userRecs, int userId) {
-        userRecs.javaRDD().filter(row -> row.getInt(0) == userId).foreach(row -> row.getList(1).forEach(line -> System.out.println(line)));
+        userRecs.javaRDD().filter(row -> row.getInt(0) == userId).foreach(
+                row -> row.getList(1).forEach(
+                        line -> {
+                            String str = line.toString();
+                            str = str.substring(1,str.length()-1);
+                            System.out.println(userId+","+str);
+                            try {
+                                AlsRating alsRating = new AlsRating();
+                                alsRating.setUserId(userId);
+                                alsRating.setBookId(Integer.parseInt(str.split(",")[0]));
+                                alsRating.setRating(Double.parseDouble(str.split(",")[1]));
+                                alsRating.save();
+                            }catch (Exception x){
+
+                            }
+                        }
+
+                )
+        );
     }
 }

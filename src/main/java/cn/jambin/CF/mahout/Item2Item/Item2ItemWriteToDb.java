@@ -11,6 +11,7 @@ import org.apache.mahout.cf.taste.similarity.precompute.SimilarItemsWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Item2ItemWriteToDb implements SimilarItemsWriter {
@@ -27,12 +28,14 @@ public class Item2ItemWriteToDb implements SimilarItemsWriter {
   public void add(SimilarItems similarItems) throws IOException {
     int counter = 0;
     List<Record> list = new ArrayList<>();
+    Date date = new Date();
     for (SimilarItem item: similarItems.getSimilarItems()) {
       Record record = new Record();
       record.set("id", null);
       record.set("book_id", similarItems.getItemID());
       record.set("similarity_book_id", item.getItemID());
       record.set("similarity", item.getSimilarity());
+      record.set("ctime", date);
       list.add(record);
       counter++;
       if (counter>=10)

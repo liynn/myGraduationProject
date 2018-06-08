@@ -1,5 +1,8 @@
 package cn.jambin.base;
 import cn.jambin.base.annotation.BaseService;
+import cn.jambin.CF.CFTask;
+import cn.jambin.util.PropertiesFileUtil;
+import it.sauronsoftware.cron4j.Scheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
@@ -28,6 +31,16 @@ public class ApplicationContextListener implements ApplicationListener<ContextRe
                     e.printStackTrace();
                 }
             }
+
+            //任务二，启动定时任务
+            String cfTask = new StringBuffer(PropertiesFileUtil.getInstance("jdbc").get("cf.task")).toString();
+            if ("true".equals(cfTask)){
+                CFTask task = new CFTask();
+                Scheduler scheduler = new Scheduler();
+                scheduler.schedule("* 3 * * *", task);
+                scheduler.start();
+            }
+
         }
     }
 }

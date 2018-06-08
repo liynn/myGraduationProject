@@ -215,15 +215,30 @@
   </select>
 
   <select id="getAlsRecdByUserId" resultType="cn.jambin.dto.UserBookDto">
-    SELECT b.title, b.book_id, b.image, b.author, b.tags, b.publisher, a.rating  FROM als_recommend a LEFT JOIN book b on a.book_id=b.book_id WHERE a.user_id=#{userId} limit 10
+    SELECT DISTINCT (b.book_id), b.title, b.image, b.author, b.tags, b.publisher, a.rating, a.ctime
+    FROM als_recommend a
+    LEFT JOIN book b on a.book_id=b.book_id
+    WHERE a.user_id=#{userId}
+    ORDER BY a.ctime DESC
+    limit 10
   </select>
 
   <select id="getItemCFRecdByUserId" resultType="cn.jambin.dto.UserBookDto">
-    SELECT b.title, b.book_id, b.image, b.author, b.tags, b.publisher, a.rating  FROM  itembased_recommend a LEFT JOIN book b on a.book_id=b.book_id WHERE a.user_id=#{userId} limit 10
+    SELECT DISTINCT (b.book_id), b.title,  b.image, b.author, b.tags, b.publisher, a.rating, a.ctime
+    FROM  itembased_recommend a
+    LEFT JOIN book b on a.book_id=b.book_id
+    WHERE a.user_id=#{userId}
+    ORDER BY a.ctime DESC
+    limit 10
   </select>
 
   <select id="getUserCFRecdByUserId" resultType="cn.jambin.dto.UserBookDto">
-    SELECT b.title, b.book_id, b.image, b.author, b.tags, b.publisher, a.rating FROM userbased_recommend a LEFT JOIN book b on a.book_id=b.book_id WHERE a.user_id=#{userId} limit 10
+    SELECT  DISTINCT (b.book_id), b.title,  b.image, b.author, b.tags, b.publisher, a.rating, a.ctime
+    FROM userbased_recommend a
+    LEFT JOIN book b on a.book_id=b.book_id
+    WHERE a.user_id=#{userId}
+    ORDER BY a.ctime DESC
+    limit 10
   </select>
 
 </mapper>
